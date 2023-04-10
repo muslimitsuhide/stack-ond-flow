@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Stack OND Flow</title>
+    <link rel="shortcut icon" href="../static/img/head_logo.png" type="image/x-icon">
+    <link href="../static/css/bootstrap.css" rel="stylesheet">
+    <link href="../static/css/style.css" rel="stylesheet">
+  </head>
+  <body class="d-flex flex-column h-100">
+
+<header>
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+      <div class="logo">
+        <a href="../templates/index.html"><img src="../static/img/head_logo.png" alt=""></a>
+      </div>
+      <a class="navbar-brand" href="../templates/index.html">Stack <span class="bold">OND</span> Flow</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">New</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="../templates/index.html">Hot</a>
+          </li>
+          <li class ="nav-item">
+            <a class="nav-link header-new-question" href="../templates/ask.html">Ask a question</a>
+          </li>
+        </ul>
+
+        <form class="d-flex header-search" role="search">
+          <input class="form-control" type="search" placeholder="Search..." aria-label="Search">
+          <button class="btn btn-outline-secondary" type="submit">Search</button>
+        </form>
+
+        <div class="avatar header-avatar"><a href="../templates/settings.html"><img src="../static/img/main_avatar.jpeg" alt=""></a></div>
+        <div class="header-account-link"><a href="../templates/login.html">muslimitsuhide</a></div>
+
+      </div>>
+    </div>
+  </nav>
+</header>
+
+<!-- Begin page content -->
+<main class="flex-shrink-0">
+  <div class="container">
+    <h1 class="mt-5">Hot questions</h1>
+  <div class="row">
+    <div class="col-9">
+        <div class="question">
+            <div class="row">
+                <div class="col-2">
+                    <div class="question-avatar">
+                        <img src="../static/img/avatar1.jpeg" alt="">
+                    </div>
+                    <div class="question-author-name"><a href="#">Dennis Ritchie</a></div>
+                    <div class="question-rating">
+                      <div class="question-rating-arrows">
+                        <div class="btn btn-sm question-rating-arrow-up">↑</div>
+                        <div class="question-rating-amount success">+120</div>
+                        <div class="btn btn-sm question-rating-arrow-down">↓</div>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="col-9">
+                  <div class="row question-header">
+                    <h2><a href="#">Вопрос про SOLID</a></h2>
+                  </div>
+                    <div class="question-text">Какие принципы SOLID (Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion) в объектно-ориентированном программировании и как они способствуют созданию гибкого, расширяемого и поддерживаемого кода?</div>
+                    <div class="row">
+                        <div class="col-3">
+                          <div class="question-answers"><a href="#">Answers (15)</a></div>
+                        </div>
+                        <div class="col-4">
+                            Tags: <a href="../templates/solid.html">SOLID</a>, <a href="#">ООП</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-status">
+                  <div class="question-time-ago">2 дня назад</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="question">
+          <div class="row">
+              <div class="col-2">
+                  <div class="question-avatar">
+                      <img src="../static/img/avatar2.jpeg" alt="">
+                  </div>
+                  <div class="question-author-name"><a href="#">Steve Wozniak</a></div>
+                  <div class="question-rating">
+                    <div class="question-rating-arrows">
+                      <div class="btn btn-sm question-rating-arrow-up">↑</div>
+                      <div class="question-rating-amount failure">-178</div>
+                      <div class="btn btn-sm question-rating-arrow-down">↓</div>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="col-9">
+                <div class="row question-header">
+                  <h2><a href="#">DRY, БЭМ или SMACSS?</a></h2>
+                </div>
+                  <div class="question-text">Какие принципы организации стилей в CSS, такие как DRY, БЭМ или SMACSS, могут помочь создавать чистый, поддерживаемый и масштабируемый код стилей в веб-разработке?</div>
+                  <div class="row">
+                      <div class="col-3">
+                        <div class="question-answers"><a href="#">Answers (20)</a></div>
+                      </div>
+                      <div class="col-4">
+                          Tags: <a href="#">CSS</a>, <a href="#">HTML</a>, <a href="#">БЭМ</a>, <a href="#">DRY</a>
+                      </div>
+                  </div>
+              </div>
+              <div class="question-status">
+                <div class="question-time-ago">5 дней назад</div>
+              </div>
+          </div>
+      </div>
+
+      <div class="question">
+        <div class="row">
+            <div class="col-2">
+                <div class="question-avatar">
+                    <img src="../static/img/avatar3.jpeg" alt="">
+                </div>
+                <div class="question-author-name"><a href="#">Mark Zuckerberg</a></div>
+                <div class="question-rating">
+                  <div class="question-rating-arrows">
+                    <div class="btn btn-sm question-rating-arrow-up">↑</div>
+                    <div class="question-rating-amount neutral">0</div>
+                    <div class="btn btn-sm question-rating-arrow-down">↓</div>
+                  </div>
+                </div>
+            </div>
+
+            <div class="col-9">
+              <div class="row question-header">
+                <h2><a href="../templates/question.html">Вопрос про algorithm на С++</a></h2>
+              </div>
+                <div class="question-text">Какие функциональности предоставляет библиотека algorithm в C++ и какие популярные алгоритмы могут быть использованы при разработке программного кода на C++ с использованием данной библиотеки?</div>
+                <div class="row">
+                    <div class="col-3">
+                      <div class="question-answers"><a href="#">Answers (3)</a></div>
+                    </div>
+                    <div class="col-4">
+                        Tags: <a href="#">algorithm</a>, <a href="#">C++</a>
+                    </div>
+                </div>
+            </div>
+            <div class="question-status">
+              <div class="question-time-ago">10 дней назад</div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-3 sidebar">
+      <div class="sidebar-block sidebar-tags">
+        <div class="row sidebar-header">
+          <h3>Popular tags<h3>
+        </div>
+        <div class="sidebar-content">
+          <div class="tag btn">VK Образование</div>
+          <div class="tag btn">WEB</div>
+          <div class="tag btn">МГТУ</div>
+          <div class="tag btn">HTML</div>
+          <div class="tag btn">CSS</div>
+          <div class="tag btn">C++</div>
+          <div class="tag btn">ООП</div>
+          <div class="tag btn">Алгоритмы</div>
+          <div class="tag btn">Python</div>
+          <div class="tag btn">VK</div>
+          <div class="tag btn">SQL</div>
+          <div class="tag btn">Технопарк</div>
+        </div>
+      </div>
+      <div class="sidebar-block sidebar-users">
+        <div class="row sidebar-header">
+          <h3>Best members<h3>
+        </div>
+        <div class="sidebar-content">
+          <ul class="list-group list-group-flush">
+            <div class="list-group-item sidebar-user">
+              <a href="#" class="sidebar-user-name">Muslim Mitsuhide</a>
+              <span class="badge badge-primary badge-pill">950</span>
+            </div>
+            <li class="list-group-item sidebar-user">
+              <a href ="#" class="sidebar-user-name">Linus Torvalds</a>
+              <span class="badge badge-primary badge-pill">654</span>
+            </li>
+            <li class="list-group-item sidebar-user">
+              <a href="#" class="sidebar-user-name">Grace Hopper</a>
+              <span class="badge badge-primary badge-pill">546</span>
+            </li>
+            <li class="list-group-item sidebar-user">
+              <a href="#" class="sidebar-user-name">Bjorn Stroustrup</a>
+              <span class="badge badge-primary badge-pill">455</span>
+            </li>
+            <li class="list-group-item sidebar-user">
+              <a href="#" class="sidebar-user-name">Donald Knuth</a>
+              <span class="badge badge-primary badge-pill">232</span>
+            </li>
+            <li class="list-group-item sidebar-user">
+              <a href="#" class="sidebar-user-name">Dennis Ritchie</a>
+              <span class="badge badge-primary badge-pill">120</span>
+            </li>
+          </ul>
+        </div>
+      </div> 
+
+    </div>
+    
+  </div> 
+
+  <!-- Pagination -->
+  <div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+      </nav>
+  </div>
+</main>
+
+  <footer class="footer mt-auto py-3 bg-dark">
+    <div class="container">
+      <span class="text-muted"> ⓒ OND team</span><br>
+      <span class="text-muted">all social networks: @muslimitsuhide</span><br>
+    </div>
+  </footer>
+  </body>
+</html>
