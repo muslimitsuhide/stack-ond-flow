@@ -1,6 +1,20 @@
 {% extends "inc/base.html" %}
 
+{% load static %}
+
+{% block page_title %}
+Stack OND Flow
+{% endblock %}
+
 {% block content %}
+
+<div class="row">
+
+  <div class="col-9 page-header">
+    <h1>Hot Questions</h1>
+  </div>
+
+</div>
 
 {% for question in questions %}
   {% include "inc/question_item.html" %}

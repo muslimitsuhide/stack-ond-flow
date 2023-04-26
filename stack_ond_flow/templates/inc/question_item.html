@@ -4,13 +4,13 @@
   <div class="row">
       <div class="col-2">
           <div class="question-avatar">
-              <img src="../static/img/avatar1.jpeg" alt="">
+              <img src="{% static question.user.avatar %}" alt="">
           </div>
-          <div class="question-author-name"><a href="#">Dennis Ritchie</a></div>
+          <div class="question-author-name"><a href="#">{{question.user.name}}</a></div>
           <div class="question-rating">
             <div class="question-rating-arrows">
               <div class="btn btn-sm question-rating-arrow-up">↑</div>
-              <div class="question-rating-amount success">+120</div>
+              <div class="question-rating-amount success">+{{question.rating}}</div>
               <div class="btn btn-sm question-rating-arrow-down">↓</div>
             </div>
           </div>
@@ -18,9 +18,9 @@
 
       <div class="col-9">
         <div class="row question-header">
-          <h2><a href="question.html"> {{ question.title }} </a></h2>
+          <h2><a href="question.html">{{question.title}}</a></h2>
         </div>
-          <div class="question-text"> {{ question.text }} </div>
+          <div class="question-text">{{question.text}}</div>
           <div class="row">
               <div class="col-3">
                 <div class="question-answers"><a href="#">Answers (15)</a></div>
@@ -31,7 +31,7 @@
           </div>
       </div>
       <div class="question-status">
-        <div class="question-time-ago">2 дня назад</div>
+        <div class="question-time-ago">{{question.time_ago}}</div>
       </div>
   </div>
 </div>

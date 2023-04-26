@@ -1,61 +1,21 @@
-<!doctype html>
-<html lang="en" class="h-100">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Stack OND Flow</title>
-    <link rel="shortcut icon" href="../static/img/head_logo.png" type="image/x-icon">
-    <link href="../static/css/bootstrap.css" rel="stylesheet">
-    <link href="../static/css/style.css" rel="stylesheet">
-  </head>
-  <body class="d-flex flex-column h-100">
+{% extends "inc/base.html" %}
 
-<header>
-  <!-- Fixed navbar -->
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="container-fluid">
-      <div class="logo">
-        <a href="../templates/index.html"><img src="../static/img/head_logo.png" alt=""></a>
-      </div>
-      <a class="navbar-brand" href="../templates/index.html">Stack <span class="bold">OND</span> Flow</a>
+{% load static %}
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+{% block page_title %}
+Stack OND Flow
+{% endblock %}
 
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">New</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="../templates/index.html">Hot</a>
-          </li>
-          <li class ="nav-item">
-            <a class="nav-link header-new-question" href="../templates/ask.html">Ask a question</a>
-          </li>
-        </ul>
-
-        <form class="d-flex header-search" role="search">
-          <input class="form-control" type="search" placeholder="Search..." aria-label="Search">
-          <button class="btn btn-outline-secondary" type="submit">Search</button>
-        </form>
-
-        <div class="avatar header-avatar"><a href="../templates/settings.html"><img src="../static/img/main_avatar.jpeg" alt=""></a></div>
-        <div class="header-account-link"><a href="../templates/login.html">muslimitsuhide</a></div>
-
-      </div>>
-    </div>
-  </nav>
-</header>
+{% block content %}
 
 <!-- Begin page content -->
-<main class="flex-shrink-0">
-  <div class="container">
-    <h1 class="mt-5">New question</h1>
+<div class="row">
+
+  <div class="col-11 page-header">
+    <h1>New Question</h1>
+  </div>
+
+</div>
 
   <div class="row">
     <div class="col-9">
@@ -80,72 +40,6 @@
               </form>
         </div>
     </div>
-
-    <!-- Sidebar -->
-    <div class="col-3 sidebar">
-      <div class="sidebar-block sidebar-tags">
-        <div class="row sidebar-header">
-          <h3>Popular tags<h3>
-        </div>
-        <div class="sidebar-content">
-          <div class="tag btn">VK Образование</div>
-          <div class="tag btn">WEB</div>
-          <div class="tag btn">МГТУ</div>
-          <div class="tag btn">HTML</div>
-          <div class="tag btn">CSS</div>
-          <div class="tag btn">C++</div>
-          <div class="tag btn">ООП</div>
-          <div class="tag btn">Алгоритмы</div>
-          <div class="tag btn">Python</div>
-          <div class="tag btn">VK</div>
-          <div class="tag btn">SQL</div>
-          <div class="tag btn">Технопарк</div>
-        </div>
-      </div>
-      <div class="sidebar-block sidebar-users">
-        <div class="row sidebar-header">
-          <h3>Best members<h3>
-        </div>
-        <div class="sidebar-content">
-          <ul class="list-group list-group-flush">
-            <div class="list-group-item sidebar-user">
-              <a href="#" class="sidebar-user-name">Muslim Mitsuhide</a>
-              <span class="badge badge-primary badge-pill">950</span>
-            </div>
-            <li class="list-group-item sidebar-user">
-              <a href ="#" class="sidebar-user-name">Linus Torvalds</a>
-              <span class="badge badge-primary badge-pill">654</span>
-            </li>
-            <li class="list-group-item sidebar-user">
-              <a href="#" class="sidebar-user-name">Grace Hopper</a>
-              <span class="badge badge-primary badge-pill">546</span>
-            </li>
-            <li class="list-group-item sidebar-user">
-              <a href="#" class="sidebar-user-name">Bjorn Stroustrup</a>
-              <span class="badge badge-primary badge-pill">455</span>
-            </li>
-            <li class="list-group-item sidebar-user">
-              <a href="#" class="sidebar-user-name">Donald Knuth</a>
-              <span class="badge badge-primary badge-pill">232</span>
-            </li>
-            <li class="list-group-item sidebar-user">
-              <a href="#" class="sidebar-user-name">Dennis Ritchie</a>
-              <span class="badge badge-primary badge-pill">120</span>
-            </li>
-          </ul>
-        </div>
-      </div> 
-
-    </div>
-    
-  </div> 
-</main>
-
-  <footer class="footer mt-auto py-3 bg-dark">
-    <div class="container">
-      <span class="text-muted"> ⓒ OND team</span><br>
-      <span class="text-muted">all social networks: @muslimitsuhide</span><br>
-    </div>
-  </footer>
-  </body>
-</html>
+  </div>
+  
+{% endblock %}

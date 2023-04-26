@@ -1,0 +1,40 @@
+{% load static %}
+
+<header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <div class="logo">
+          <a href="../templates/index.html"><img src="../static/img/head_logo.png" alt=""></a>
+        </div>
+        <a class="navbar-brand" href="../templates/index.html">Stack <span class="bold">OND</span> Flow</a>
+  
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">New</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="../templates/base.html">Hot</a>
+            </li>
+          </ul>
+  
+          <form class="d-flex header-search" role="search">
+            <input class="form-control" type="search" placeholder="Search..." aria-label="Search">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+          </form>
+  
+          <div class="avatar header-avatar"><a href="../templates/settings.html"><img src="../static/img/main_avatar.jpeg" alt=""></a></div>
+          <div class="header-account-link"><a href="../templates/login.html">muslimitsuhide</a></div>
+  
+        </div>
+      </div>
+    </nav>
+  </header>
