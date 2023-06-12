@@ -3,80 +3,58 @@
 
 {% block content %}
 
-        <div class="open-question">
-            <div class="row">
-                <div class="col-2">
-                    <div class="open-question-avatar">
-                        <img src="../static/img/avatar3.jpeg" alt="">
-                    </div>
-                    <div class="question-author-name"><a href="#">Mark Zuckerberg</a></div>
-                    <div class="question-rating">
-                      <div class="question-rating-arrows">
-                        <div class="btn btn-sm question-rating-arrow-up">↑</div>
-                        <div class="question-rating-amount neutral">0</div>
-                        <div class="btn btn-sm question-rating-arrow-down">↓</div>
-                      </div>
-                    </div>
-                </div>
-
-                <div class="col-9">
-                    <div class="row question-header">
-                      <h2><a href="../templates/question.html">Вопрос про algorithm на С++</a></h2>
-                    </div>
-                      <div class="open-question-text">Какие функциональности предоставляет библиотека algorithm в C++ и какие популярные алгоритмы могут быть использованы при разработке программного кода на C++ с использованием данной библиотеки?</div>
-                      <div class="row">
-                          <div class="col-4">
-                              Tags: <a href="#">algorithm</a>, <a href="#">C++</a>
-                          </div>
-                      </div>
-                </div>
-            </div>
-        </div>
-
-        <hr>
-        <div class="container">
-            <h1 class="mt-5">Answers</h1>
-        </div>
-
-        <div class="question">
-          <div class="row">
-              <div class="col-2">
-                  <div class="question-avatar">
-                      <img src="../static/img/avatar4.jpeg" alt="">
-                  </div>
-                  <div class="question-author-name"><a href="#">Elon Musk</a></div>
-                  <div class="question-rating">
-                    <div class="question-rating-arrows">
-                      <div class="btn btn-sm question-rating-arrow-up">↑</div>
-                      <div class="question-rating-amount failure">-17</div>
-                      <div class="btn btn-sm question-rating-arrow-down">↓</div>
-                    </div>
-                  </div>
+  <div class="open-question">
+      <div class="row">
+          <div class="col-2">
+              <div class="open-question-avatar">
+                  <img src="{% static question.user.avatar %}" alt="">
               </div>
-
-              <div class="col-9">
-                  <div class="open-question-text">Бро, мне кажется, ты слишком много паришься. Зачем тебе эти плюсы... Давай лучше своими руками что-нибудь сделаем. Ракету... Машину... Робота... Да что захочешь! Мои цифры знаешь, до связи</div>
-                  <div class="ans-status">
-                    <div class="form-check">
-                        <input class="form-check-input check-right" type="checkbox" value="" id="isRirghtAns">
-                        <label class="form-check-label" for="isRightAns">Correct!</label>
-                    </div>
-                  </div>
-              </div>
-              <div class="question-status">
-                <div class="question-time-ago">5 дней назад</div>
+              <div class="question-author-name"><a href="#">{{question.user.name}}</a></div>
+              <div class="question-rating">
+                <div class="question-rating-arrows">
+                  <div class="btn btn-sm question-rating-arrow-up">↑</div>
+                  <div class="question-rating-amount success">+{{question.rating}}</div>
+                  <div class="btn btn-sm question-rating-arrow-down">↓</div>
+                </div>
               </div>
           </div>
+
+          <div class="col-9">
+              <div class="row question-header">
+                <h2><a href="../templates/question.html">{{question.title}}</a></h2>
+              </div>
+                <div class="open-question-text">
+                  {{question.text}}
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Tags: 
+                        {% for tag in question.tags %}  
+                          <div class="tag btn"><a href="{% url "tag" tag.id %}">{{tag.name}}</a></div>
+                        {% endfor %}
+                    </div>
+                </div>
+          </div>
       </div>
+  </div>
 
-    <hr>
+  <hr>
+  <div class="container">
+      <h1 class="mt-5">Answers</h1>
+  </div>
 
-    <form class="new-answer">
-        <div class="form-group form-group-flex">
-          <textarea class="form-control question-form" id="questionText" placeholder="Enter your answer here..." rows="6"></textarea> 
-        </div>
-        <button type="submit" class="btn btn-dark answer-button">Answer</button>
-    </form>
+  <div class="answer-section">
+    {% for answer in question.answers %}
+      {% include "inc/answer.html" %}
+    {% endfor %}
+  </div>
+<hr>
 
+<form class="new-answer">
+  <div class="form-group form-group-flex">
+    <textarea class="form-control question-form" id="questionText" placeholder="Enter your answer here..." rows="6"></textarea> 
+  </div>
+  <button type="submit" class="btn btn-dark answer-button">Answer</button>
+</form>
 
 {% endblock content %}

@@ -1,0 +1,34 @@
+{% load static %}
+
+<div class="answer">
+    <div class="row">
+      <div class="col-2">
+            <div class="question-avatar">
+                <img src="{% static answer.user.avatar %}" alt="">
+            </div>
+            <div class="question-author-name"><a href="#">{{answer.user.name}}</a></div>
+            <div class="question-rating">
+              <div class="question-rating-arrows">
+                <div class="btn btn-sm question-rating-arrow-up">↑</div>
+                <div class="question-rating-amount failure">+{{answer.rating}}</div>
+                <div class="btn btn-sm question-rating-arrow-down">↓</div>
+              </div>
+            </div>
+      </div>
+
+      <div class="col-9">
+        <div class="open-question-text">
+            {{answer.text}}
+        </div>
+        <div class="ans-status">
+          <div class="form-check">
+              <input class="form-check-input check-right" type="checkbox" value="" id="isRirghtAns">
+              <label class="form-check-label" for="isRightAns">Correct!</label>
+          </div>
+        </div>
+      </div>
+      <div class="question-status">
+        <div class="question-time-ago">{{answer.time_ago}}</div>
+      </div>
+  </div>
+</div>

@@ -5,18 +5,9 @@
         <h3>Popular tags<h3>
       </div>
       <div class="sidebar-content">
-        <div class="tag btn">VK Образование</div>
-        <div class="tag btn">WEB</div>
-        <div class="tag btn">МГТУ</div>
-        <div class="tag btn">HTML</div>
-        <div class="tag btn">CSS</div>
-        <div class="tag btn">C++</div>
-        <div class="tag btn">ООП</div>
-        <div class="tag btn">Алгоритмы</div>
-        <div class="tag btn">Python</div>
-        <div class="tag btn">VK</div>
-        <div class="tag btn">SQL</div>
-        <div class="tag btn">Технопарк</div>
+        {% for tag in tags %}
+          <div class="tag btn"><a href="{% url "tag" tag.id %}">{{tag.name}}</a></div>
+        {% endfor %}
       </div>
     </div>
     <div class="sidebar-block sidebar-users">
@@ -25,30 +16,12 @@
       </div>
       <div class="sidebar-content">
         <ul class="list-group list-group-flush">
+          {% for user in users %}
           <div class="list-group-item sidebar-user">
-            <a href="#" class="sidebar-user-name">Muslim Mitsuhide</a>
-            <span class="badge badge-primary badge-pill">950</span>
+            <a href="#" class="sidebar-user-name">{{user.name}}</a>
+            <span class="badge badge-primary badge-pill">{{user.rating}}</span>
           </div>
-          <li class="list-group-item sidebar-user">
-            <a href ="#" class="sidebar-user-name">Linus Torvalds</a>
-            <span class="badge badge-primary badge-pill">654</span>
-          </li>
-          <li class="list-group-item sidebar-user">
-            <a href="#" class="sidebar-user-name">Grace Hopper</a>
-            <span class="badge badge-primary badge-pill">546</span>
-          </li>
-          <li class="list-group-item sidebar-user">
-            <a href="#" class="sidebar-user-name">Bjorn Stroustrup</a>
-            <span class="badge badge-primary badge-pill">455</span>
-          </li>
-          <li class="list-group-item sidebar-user">
-            <a href="#" class="sidebar-user-name">Donald Knuth</a>
-            <span class="badge badge-primary badge-pill">232</span>
-          </li>
-          <li class="list-group-item sidebar-user">
-            <a href="#" class="sidebar-user-name">Dennis Ritchie</a>
-            <span class="badge badge-primary badge-pill">120</span>
-          </li>
+          {% endfor %}
         </ul>
       </div>
     </div> 

@@ -5,9 +5,9 @@
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <div class="container-fluid">
         <div class="logo">
-          <a href="../templates/index.html"><img src="../static/img/head_logo.png" alt=""></a>
+          <a href="{% url "index" %}"><img src="{% static "/img/head_logo.png" %}" alt=""></a>
         </div>
-        <a class="navbar-brand" href="../templates/index.html">Stack <span class="bold">OND</span> Flow</a>
+        <a class="navbar-brand" href="{% url "index" %}">Stack <span class="bold">OND</span> Flow</a>
   
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -19,10 +19,10 @@
               <a class="nav-link" href="#">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">New</a>
+              <a class="nav-link" href="{% url "ask" %}">New</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="../templates/base.html">Hot</a>
+              <a class="nav-link" aria-current="page" href="{% url "index" %}">Hot</a>
             </li>
           </ul>
   
@@ -31,8 +31,8 @@
             <button class="btn btn-outline-secondary" type="submit">Search</button>
           </form>
   
-          <div class="avatar header-avatar"><a href="../templates/settings.html"><img src="../static/img/main_avatar.jpeg" alt=""></a></div>
-          <div class="header-account-link"><a href="../templates/login.html">muslimitsuhide</a></div>
+          <div class="avatar header-avatar"><a href="{% url "login" %}"><img src="{% static "/img/main_avatar.jpeg"%}" alt=""></a></div>
+          <div class="header-account-link"><a href="{% url "login" %}">muslimitsuhide</a></div>
   
         </div>
       </div>
