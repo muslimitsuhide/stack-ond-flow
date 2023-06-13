@@ -6,9 +6,7 @@
         </li>
       {% endif %}
         <li class="page-item active"><a class="page-link" href="#">
-            <span class="current">
-         {{ page_obj.number }}
-          </span>
+            <span class="current">{{ page_obj.number }}</span>
         </a></li>
         {% if page_obj.has_next %}
         <li class="page-item">

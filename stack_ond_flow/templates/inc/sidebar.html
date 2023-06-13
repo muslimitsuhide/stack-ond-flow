@@ -5,7 +5,7 @@
         <h3>Popular tags<h3>
       </div>
       <div class="sidebar-content">
-        {% for tag in tags %}
+        {% for tag in tags|slice:":9" %}
           <div class="tag btn"><a href="{% url "tag" tag.id %}">{{tag.name}}</a></div>
         {% endfor %}
       </div>
@@ -16,7 +16,7 @@
       </div>
       <div class="sidebar-content">
         <ul class="list-group list-group-flush">
-          {% for user in users %}
+          {% for user in users|slice:":5" %}
           <div class="list-group-item sidebar-user">
             <a href="#" class="sidebar-user-name">{{user.name}}</a>
             <span class="badge badge-primary badge-pill">{{user.rating}}</span>
