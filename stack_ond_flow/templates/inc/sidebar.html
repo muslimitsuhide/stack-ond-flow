@@ -6,7 +6,7 @@
       </div>
       <div class="sidebar-content">
         {% for tag in top_tags %}
-          <li class="tag"><a href="{% url "tag" tag=tag.title %}">{{tag.title}}</a></li>
+          <li class="btn"><a href="{% url "tag" tag=tag.title %}">{{tag.title}}</a></li>
         {% endfor %}
       </div>
     </div>

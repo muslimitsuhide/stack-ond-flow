@@ -27,7 +27,7 @@
               </div>
               <div class="col-4">
                 {% for tag in question.tags.all %}
-                  <div class="tag btn"><a href="{% url "tag" tag.id %}">{{tag.title}}</a></div>
+                  <li class = "answer-tag"><a href="{% url "tag" tag=tag.title %}">{{tag.title}}
                 {% endfor %}
               </div>
           </div>
