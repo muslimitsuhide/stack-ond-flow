@@ -20,72 +20,39 @@ def paginate(objects_list, request, per_page=3):
     return paginator.get_page(page_number)
 
 def index(request):
-    questions = models.QUESTIONS
+    questions = models.Question.objects.new_questions()
     page_obj = paginate(questions, request, 3)
-    context = {'page_obj': page_obj,
-               'questions': models.QUESTIONS,
-               'tags': models.TAGS,
-               'users': models.USER,}
+    context = {'page_obj': page_obj, 'title': 'New Questions'}
     return render(request, 'index.html', context)
 
 def question(request, question_id: int):
     try:
-        questions = models.QUESTIONS
-        answers = models.ANSWERS
+        question = models.Question.objects.get_question(question_id)
+        answers = models.Answer.objects.get_by_question(question_id)
 
         page_obj = paginate(answers, request, 3)
-        question = questions[question_id]
 
-        context = {'page_obj': page_obj,
-                'question': question,
-                'answers': answers,
-                'tags': models.TAGS,
-                'users': models.USER}
+        context = {'question': question, 'page_obj':page_obj}
     except:
         raise Http404("Question does not exist")
     
     return render(request, 'question.html', context)
 
 def login(request):
-    context = {'questions': models.QUESTIONS,
-               'tags': models.TAGS,
-               'users': models.USER}
-    return render(request, 'login.html', context)
+    return render(request, 'login.html')
 
 def register(request):
-    context = {'questions': models.QUESTIONS,
-               'tags': models.TAGS,
-               'users': models.USER}
-    return render(request, 'register.html', context)
+    return render(request, 'register.html')
 
 def ask(request):
-    context = {'questions': models.QUESTIONS,
-               'tags': models.TAGS,
-               'users': models.USER}
-    return render(request, 'ask.html', context)
+    return render(request, 'ask.html')
 
 def tag(request, tag_id: int, page_num = 1):
     try:
-        tags = models.TAGS
-        page_obj = paginate(tags, request, 3)
-        tag = tags[tag_id]
-
-        questions_with_tag = []
-        for question in models.QUESTIONS:
-            for _tag in question['tags']:
-                if _tag['id'] == tag_id:
-                    questions_with_tag.append(question)
-
-        p = Paginator(questions_with_tag, 10)
-
-        questions = p.get_page(page_num)
-
-        context = {'page_obj': page_obj,
-                'tag': tag,
-                'questions': questions,
-                'tags': models.TAGS,
-                'users': models.USER}
-    
+        questions = models.Question.objects.tag_questions(models.Tag.objects.get_by_title(tag))
+        page_obj = paginate(questions, request, 3)
+        context = {'page_obj': page_obj, 'title': f'Tag:{tag} Questions'}
+        
     except:
          raise Http404("Tag does not exist")
 

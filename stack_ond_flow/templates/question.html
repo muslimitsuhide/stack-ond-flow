@@ -7,7 +7,7 @@
       <div class="row">
           <div class="col-2">
               <div class="open-question-avatar">
-                  <img src="{% static question.user.avatar %}" alt="">
+                <img src= "{% static "img/avatar1.jpeg" %}" />
               </div>
               <div class="question-author-name"><a href="#">{{question.user.name}}</a></div>
               <div class="question-rating">
@@ -24,13 +24,13 @@
                 <h2><a href="../templates/question.html">{{question.title}}</a></h2>
               </div>
                 <div class="open-question-text">
-                  {{question.text}}
+                  {{question.content}}
                 </div>
                 <div class="row">
                     <div class="col-6">
                         Tags: 
-                        {% for tag in question.tags %}  
-                          <div class="tag btn"><a href="{% url "tag" tag.id %}">{{tag.name}}</a></div>
+                        {% for tag in question.tags.all %}  
+                          <div class="tag btn"><a href="{% url "tag" tag.id %}">{{tag.title}}</a></div>
                         {% endfor %}
                     </div>
                 </div>
@@ -44,7 +44,7 @@
   </div>
 
   <div class="answer-section">
-    {% for answer in question.answers %}
+    {% for answer in page_obj %}
       {% include "inc/answer.html" %}
     {% endfor %}
   </div>
