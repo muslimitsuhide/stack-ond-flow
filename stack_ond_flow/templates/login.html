@@ -1,5 +1,5 @@
 {% extends "inc/base.html" %}
-
+{% load bootstrap5 %}
 {% load static %}
 
 {% block page_title %}
@@ -14,7 +14,7 @@ Stack OND Flow
     </div>
   </div>
 
-  <div class="row page-content">
+  <div class="row page-content" action="/login/" method="post">
 
     <!-- LogIn col -->
     <form class="col-8 su-form login-form">
@@ -23,11 +23,11 @@ Stack OND Flow
       </div>
       <div class="form-group form-group-flex">
         <label class="reg-form-label" for="userLogin">Login:</label>
-        <input class="form-control reg-form" id="userLogin" placeholder="muslimitsuhide">
+        <input class="form-control reg-form" name="username" id="userLogin" placeholder="muslimitsuhide">
       </div>
       <div class="form-group form-group-flex">
         <label class="reg-form-label" for="userPsw">Password:</label>
-        <input type="password" class="form-control reg-form" id="userPsw" placeholder="password">
+        <input type="password" class="form-control reg-form" name="password" id="userPsw" placeholder="password">
       </div>
 
       <button type="submit" class="btn btn-dark submit-button sbmt-reg-btn">Log in</button>

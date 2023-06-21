@@ -2,12 +2,35 @@ from django.db import models
 from django.db.models import Count
 from django.contrib.auth.models import User
 from django.db.models import ObjectDoesNotExist
-
+from django.db.models import F
 
 class ProfileManager(models.Manager):
     def get_top5(self):
         return self.order_by('-rating')[:5]
 
+    def get_user_by_username(self, username):
+            try:
+                user = User.objects.get(username=username)
+            except ObjectDoesNotExist:
+                user = None
+            return user
+
+    def get_profile_by_user_id(self, uid):
+        try:
+            user = User.objects.get(id=uid)
+        except ObjectDoesNotExist:
+            return None
+        profile = Profile.objects.get(user=user)
+        return profile
+
+    def set_rating(self, profile):
+        print("fssfk")
+        profile.rating = profile.questions.all().aggregate(sum=Sum('rating'))['sum']
+        print(profile.rating)
+        if profile.rating == None:
+            profile.rating = 0
+        profile.save()
+        
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.PROTECT)
@@ -53,7 +76,6 @@ class Answer(models.Model):
     create_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey('Profile', on_delete=models.CASCADE, related_name='answers')
     question = models.ForeignKey('Question', default=0, on_delete=models.CASCADE, related_name='answers')
-    is_correct = models.BooleanField(default=False)
 
     objects = AnswerManager()
 

@@ -1,8 +1,16 @@
-from . import models
+from django.contrib.auth.decorators import login_required
+from django.db.models.fields import json
+import json
 from django.shortcuts import render
+from django.http import Http404, HttpResponseRedirect
+from django.shortcuts import redirect
+from django.shortcuts import reverse
 from django.core.paginator import Paginator
-from django.http import *
-from django.http import Http404
+from django.contrib import auth
+from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.http import require_http_methods, require_POST
+from . import models
+from .forms import *
 
 def paginate(objects_list, request, per_page=3):
     paginator = Paginator(objects_list, per_page)
@@ -33,31 +41,89 @@ def index(request):
     return render(request, 'index.html', context)
 
 
-def question(request, question_id: int):
-    try:
-        question = models.Question.objects.get_question(question_id)
-        answers = models.Answer.objects.get_by_question(question_id)
-
-        page_obj = paginate(answers, request, 3)
-
-        context = {'question': question, 'page_obj':page_obj}
-        sidebar_content(context)
-    except:
+def question(request, question_id):
+    question = models.Question.objects.get_question(question_id)
+    if question == None:
         raise Http404("Question does not exist")
-    
-    return render(request, 'question.html', context)
+    answers = models.Answer.objects.get_by_question(question_id)
+    page_obj = paginate(answers, request, 3)
+    context = {'question': question, 'page_obj':page_obj}
+    sidebar_content(context)
+    if request.method == "GET":
+        answer_form = AnswerForm()
+    elif request.method == "POST":
+        if request.user.is_anonymous:
+            return HttpResponseRedirect(reverse("login"))
+        answer_form = AnswerForm(request.POST)
+        if answer_form.is_valid():
+            answer_id = answer_form.save(request.user, question)
+            answers_cnt = question.answers.count()
+            num_page = (answers_cnt // 10) + 1
+            return HttpResponseRedirect(reverse("question", args=[question_id]) + f"?page=1#answer-{answer_id}")
+    context['form'] = answer_form
+    return render(request, "question.html", context)
 
 
 def login(request):
-    return render(request, 'login.html')
+    if request.method == 'GET':
+        user_form = forms.LoginForm()
+
+    if request.method == 'POST':
+        user_form = forms.LoginForm(request.POST)
+        if user_form.is_valid():
+            user = auth.authenticate(request=request, **user_form.cleaned_data)
+            if user:
+                auth.login(request, user)
+                return redirect(reverse('index'))
+            else:
+                user_form.add_error(field=None, error='Wrong username or password')
+    
+    context = { 'form': user_form }
+    sidebar_content(context)
+
+    return render(request, 'login.html', context=context)
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect(request.META.get('HTTP_REFERER'))
 
 
 def register(request):
-    return render(request, 'register.html')
+    if request.method == 'GET':
+        user_form = forms.RegistrationForm()
+    
+    if request.method == 'POST':
+        user_form = forms.RegistrationForm(request.POST, request.FILES)
+        if user_form.is_valid():
+            user_form.save()
+
+            user = auth.authenticate(request=request, **user_form.cleaned_data)
+            if user:
+                auth.login(request, user)
+                return redirect(reverse('index'))
+            else:
+                user_form.add_error(field=None, error='Error while creating user')
+    
+    context = { 'form': user_form }
+    sidebar_content(context)
+
+    return render(request, 'register.html', context=context)
 
 
+@login_required(login_url='login', redirect_field_name='continue')
 def ask(request):
-    return render(request, 'ask.html')
+    context = {}
+    sidebar_content(context)
+    if request.method == 'GET':
+        ask_form = QuestionForm()
+    elif request.method == 'POST':
+        ask_form = QuestionForm(request.POST)
+        if ask_form.is_valid():
+            question_id = ask_form.save(request.user)
+            return HttpResponseRedirect(reverse("question", args=[question_id]))
+    context['form'] = ask_form
+    return render(request, 'ask.html', context)
 
 
 def tag(request, tag):
@@ -68,6 +134,6 @@ def tag(request, tag):
         sidebar_content(context)
 
     except:
-         raise Http404("Tag does not exist")
+         raise Http404('Tag does not exist')
 
     return render(request, 'index.html', context)
