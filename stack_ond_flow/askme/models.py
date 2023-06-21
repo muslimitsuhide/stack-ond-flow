@@ -25,7 +25,6 @@ class ProfileManager(models.Manager):
 
     def set_rating(self, profile):
         print("fssfk")
-        profile.rating = profile.questions.all().aggregate(sum=Sum('rating'))['sum']
         print(profile.rating)
         if profile.rating == None:
             profile.rating = 0
@@ -58,7 +57,7 @@ class TagManager(models.Manager):
 
 
 class Tag(models.Model):
-    title = models.CharField(max_length=20)
+    title = models.CharField(max_length=50)
 
     objects = TagManager()
 

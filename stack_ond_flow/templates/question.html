@@ -1,5 +1,6 @@
 {% extends "inc/base.html" %}
 {% load static %}
+{% load bootstrap5 %}
 
 {% block content %}
 
@@ -9,7 +10,7 @@
               <div class="open-question-avatar">
                 <img src= "{% static "img/avatar1.jpeg" %}" />
               </div>
-              <div class="question-author-name"><a href="#">{{question.user.name}}</a></div>
+              <div class="question-author-name"><a href="#">{{question.author.user.first_name}} {{question.author.user.last_name}}</a></div>
               <div class="question-rating">
                 <div class="question-rating-arrows">
                   <div class="btn btn-sm question-rating-arrow-up">↑</div>
@@ -52,9 +53,8 @@
 <hr>
 
 <form class="new-answer">
-  <div class="form-group form-group-flex">
-    <textarea class="form-control question-form" id="questionText" placeholder="Enter your answer here..." rows="6"></textarea> 
-  </div>
+  {% csrf_token %}
+  {% bootstrap_form form %}
   <button type="submit" class="btn btn-dark answer-button">Answer</button>
 </form>
 

@@ -31,8 +31,14 @@
             <button class="btn btn-outline-secondary" type="submit">Search</button>
           </form>
   
-          <div class="avatar header-avatar"><a href="{% url "login" %}"><img src="{% static "/img/main_avatar.jpeg"%}" alt=""></a></div>
-          <div class="header-account-link"><a href="{% url "login" %}">muslimitsuhide</a></div>
+          <div class="text-end">
+            <a href = "{% url 'login' %}">
+                <button type="button" class="btn btn-outline-light me-2">Login</button>
+            </a>
+            <a href = "{% url 'register' %}">
+                <button type="button" class="btn btn-warning">Registration</button>
+            </a>
+        </div>
   
         </div>
       </div>

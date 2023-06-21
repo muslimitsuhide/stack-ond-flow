@@ -64,51 +64,69 @@ def question(request, question_id):
     return render(request, "question.html", context)
 
 
+@csrf_protect
 def login(request):
+    context = {}
+    sidebar_content(context)
     if request.method == 'GET':
-        user_form = forms.LoginForm()
-
-    if request.method == 'POST':
-        user_form = forms.LoginForm(request.POST)
-        if user_form.is_valid():
-            user = auth.authenticate(request=request, **user_form.cleaned_data)
+        login_form = LoginForm()
+    elif request.method == 'POST':
+        login_form = LoginForm(request.POST)
+        if login_form.is_valid():
+            user = auth.authenticate(request=request, **login_form.cleaned_data)
             if user:
                 auth.login(request, user)
-                return redirect(reverse('index'))
+                continue_url = request.GET.get("continue")
+                if continue_url is None or continue_url[0] != "/":
+                    continue_url = "/"
+                return HttpResponseRedirect(continue_url)
             else:
-                user_form.add_error(field=None, error='Wrong username or password')
-    
-    context = { 'form': user_form }
-    sidebar_content(context)
-
-    return render(request, 'login.html', context=context)
+                login_form.add_error(field=None, error="Wrong username or/and password")
+    context['form'] = login_form
+    return render(request, "login.html", context)
 
 
+@login_required(login_url="login")
 def logout(request):
     auth.logout(request)
     return redirect(request.META.get('HTTP_REFERER'))
 
 
+@csrf_protect
 def register(request):
+    context = {}
+    sidebar_content(context)
     if request.method == 'GET':
-        user_form = forms.RegistrationForm()
-    
-    if request.method == 'POST':
-        user_form = forms.RegistrationForm(request.POST, request.FILES)
-        if user_form.is_valid():
-            user_form.save()
-
-            user = auth.authenticate(request=request, **user_form.cleaned_data)
+        reg_form = RegistrationForm()
+    elif request.method == 'POST':
+        reg_form = RegistrationForm(request.POST, request.FILES)
+        if reg_form.is_valid():
+            reg_form.save()
+            user = auth.authenticate(request=request, **reg_form.cleaned_data)
             if user:
                 auth.login(request, user)
-                return redirect(reverse('index'))
+                continue_url = request.GET.get('continue')
+                if continue_url is None or continue_url[0] != '/':
+                    continue_url = '/'
+                return HttpResponseRedirect(continue_url)
             else:
-                user_form.add_error(field=None, error='Error while creating user')
-    
-    context = { 'form': user_form }
-    sidebar_content(context)
+                reg_form.add_error(field=None, error='Wrong username or password')
+    context['form'] = reg_form
+    return render(request, 'register.html', context)
 
-    return render(request, 'register.html', context=context)
+
+@login_required(login_url='login')
+def profile_edit(request):
+    context = {}
+    sidebar_content(context)
+    if request.method == 'GET':
+        edit_form = ProfileEditForm(request.user)
+    elif request.method == 'POST':
+        edit_form = ProfileEditForm(request.user, request.POST, request.FILES)
+        if edit_form.is_valid():
+            edit_form.save()
+    context['form'] = edit_form
+    return render(request, 'edit.html', context)
 
 
 @login_required(login_url='login', redirect_field_name='continue')
@@ -121,7 +139,7 @@ def ask(request):
         ask_form = QuestionForm(request.POST)
         if ask_form.is_valid():
             question_id = ask_form.save(request.user)
-            return HttpResponseRedirect(reverse("question", args=[question_id]))
+            return HttpResponseRedirect(reverse('question', args=[question_id]))
     context['form'] = ask_form
     return render(request, 'ask.html', context)
 
