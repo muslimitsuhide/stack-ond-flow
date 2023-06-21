@@ -6,7 +6,7 @@
             <div class="question-avatar">
               <img src="{% static "img/avatar1.jpeg" %}" alt="">
             </div>
-            <div class="question-author-name"><a href="#">{{answer.user.name}}</a></div>
+            <div class="question-author-name"><a href="#">{{answer.author.user.first_name}} {{answer.author.user.last_name}}</a></div>
       </div>
 
       <div class="col-9">

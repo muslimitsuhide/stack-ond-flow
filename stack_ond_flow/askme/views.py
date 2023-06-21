@@ -11,6 +11,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_http_methods, require_POST
 from . import models
 from .forms import *
+from pack_ajax.ajax import login_required_ajax, HttpResponseAjax, HttpResponseAjaxError
 
 def paginate(objects_list, request, per_page=3):
     paginator = Paginator(objects_list, per_page)
@@ -155,3 +156,27 @@ def tag(request, tag):
          raise Http404('Tag does not exist')
 
     return render(request, 'index.html', context)
+
+
+@login_required_ajax
+@require_POST
+def vote(request):
+    data = json.loads(request.body)
+    question_id = data["question_id"]
+    type_of_vote = data["vote"]
+    new_rating = models.Like.objects.set_like(question_id, request.user.id, type_of_vote)
+    if new_rating is None:
+        return HttpResponseAjaxError(code="not_exist", message="Question or/ans user doesnt exist")
+    return HttpResponseAjax(new_rating=new_rating)
+
+
+@login_required_ajax
+@require_POST
+def correct(request):
+    data = json.loads(request.body)
+    answer_id = data["answer_id"]
+    question_id = data["question_id"]
+    if request.user != models.Question.objects.get(pk=question_id).author.user:
+        return HttpResponseAjaxError(code="not_user", message="Not proper user")
+    models.Answer.objects.set_correct(answer_id)
+    return HttpResponseAjax()

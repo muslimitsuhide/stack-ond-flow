@@ -14,23 +14,13 @@ Stack OND Flow
     </div>
   </div>
 
-  <div class="row page-content" action="/login/" method="post">
-
-    <!-- LogIn col -->
-    <form class="col-8 su-form login-form">
-      <div class="error failure">
-        Sorry, wrong password!
-      </div>
-      <div class="form-group form-group-flex">
-        <label class="reg-form-label" for="userLogin">Login:</label>
-        <input class="form-control reg-form" name="username" id="userLogin" placeholder="muslimitsuhide">
-      </div>
-      <div class="form-group form-group-flex">
-        <label class="reg-form-label" for="userPsw">Password:</label>
-        <input type="password" class="form-control reg-form" name="password" id="userPsw" placeholder="password">
-      </div>
-
-      <button type="submit" class="btn btn-dark submit-button sbmt-reg-btn">Log in</button>
+  <div>
+    <form action="/login/?continue=/" method="post">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <button type="submit" class="btn btn-outline-dark me-2">Log in</button>
+      <span><a href = "/singup/">Create new acount</a></span>
     </form>
-  </div>
+  </div> 
+
 {% endblock content %}  

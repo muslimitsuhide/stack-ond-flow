@@ -1,5 +1,5 @@
 {% extends "inc/base.html" %}
-
+{% load bootstrap5 %}
 {% load static %}
 
 {% block page_title %}
@@ -17,29 +17,12 @@ Stack OND Flow
 
 </div>
 
-  <div class="row">
-    <div class="col-9">
-        <div class="new-question">
-            <form class="col-11 new-question-form">
-                <div class="error failure">
-                    Fill in all fields
-                </div>
-                <div class="form-group form-group-flex">
-                    <label class="question-form-label" for="questionTitle">Title:</label>
-                    <input class="form-control question-form" id="questionTitle" placeholder="How to build a moon park?" required>
-                </div>
-                <div class="form-group form-group-flex">
-                    <label class="question-form-label" for="questionText">Text:</label>
-                    <textarea class="form-control question-form" id="questionText" placeholder="Really, how? Have no idea about it" rows="8" required></textarea> 
-                </div>
-                <div class="form-group form-group-flex">
-                    <label class="question-form-label" for="questionTags">Tags:</label>
-                    <textarea class="form-control question-form" id="questionTags" placeholder="moon, park, puzzle" rows="1" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-dark submit-button sbmt-ask-btn">Ask!</button>
-              </form>
-        </div>
-    </div>
-  </div>
+<div>
+  <form action="/ask/" method="post">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <button type="submit" class="btn btn-outline-dark me-2 mb-3">Ask</button>
+    </form>
+</div> 
   
 {% endblock %}

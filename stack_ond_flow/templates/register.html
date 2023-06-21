@@ -1,4 +1,5 @@
 {% extends "inc/base.html" %}
+{% load bootstrap5 %}
 {% load static %}
 
 {% block content %}
@@ -22,48 +23,21 @@ Stack OND Flow
   <div class="container">
     <h1 class="mt-5"></h1>
 
-  <div class="row">
-    <div class="col-9">
-      <main class="row flex-shrink-0 main-part">
-        <div class="col-2"></div>
-        <div class="col-8 container">
-  
-          <div class="row page-content">
-  
-          <!-- Registration col -->
-          <form class="col-8 su-form register-form">
-            <div class="error failure">
-              Sorry, this email address is already registred!
-            </div>
-            <div class="form-group form-group-flex">
-              <label class="reg-form-label" for="userLogin">Login:</label>
-              <input class="form-control reg-form" id="userLogin" placeholder="muslimitsuhide">
-            </div>
-            <div class="form-group form-group-flex">
-              <label class="reg-form-label" for="userMail">Email:</label>
-              <input class="form-control reg-form" id="userMail" placeholder="muslimitsuhide@mail.ru">
-            </div>
-            <div class="form-group form-group-flex">
-              <label class="reg-form-label" for="userNick">Nickname:</label>
-              <input class="form-control reg-form" id="userNick" placeholder="Muslim Mitsuhide">
-            </div>
-            <div class="form-group form-group-flex">
-              <label class="reg-form-label" for="userPsw">Password:</label>
-              <input type="password" class="form-control reg-form" id="userPsw" placeholder="password">
-            </div>
-            <div class="form-group form-group-flex">
-              <label class="reg-form-label-grow-1" for="userRepeatPsw">Repeat Password:</label>
-              <input type="password" class="form-control reg-form" id="userRepeatPsw" placeholder="password">
-            </div>
-            <div class="form-group form-group-flex">
-              <label class="reg-form-label" for="avatarFile">Avatar:</label>
-              <input type="file" class="form-control reg-form" id="avatarFile">
-            </div>
-
-            <button type="submit" class="btn btn-dark submit-button sbmt-reg-btn">Register!</button>
-          </form>
+    <div class="row">
+      <div class="col-9">
+        <main class="row flex-shrink-0 main-part">
+          <div class="col-2"></div>
+          <div class="col-8 container">
+    
+          <div>
+            <form action="/singup/?continue=/" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <button type="submit" class="btn btn-outline-dark me-2">Register</button>
+              </form>
+          </div>
+      </div>
     </div>
-  </div>
-</div> 
+  </div>  
 </main>
 {% endblock content %}  

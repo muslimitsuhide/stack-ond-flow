@@ -1,0 +1,19 @@
+{% extends "base.html"%}
+{% load bootstrap5 %}
+{% load static %}
+
+{% block content%}
+          <div class="row my-4">
+            <div class="col-5" style="padding-right: 0">
+                <h2>Edit</h2>
+              </div>
+          </div>
+          <div>
+            <form action="/profile/edit/" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <button type="submit" class="btn btn-outline-dark me-2">Save</button>
+              </form>
+          </div>
+
+{% endblock content%}
